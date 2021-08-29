@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -42,7 +41,6 @@ public class SimplePresentationScreen extends JFrame {
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		setTitle("TdP-DCIC-UNS 2021 :: Pantalla de presentacion");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,11 +52,13 @@ public class SimplePresentationScreen extends JFrame {
 	}
 	
 	private void init() {
+		contentPane.setLayout(null);
 		// Tabbed Pane to student personal data
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(5, 5, 444, 195);
+		contentPane.add(tabbedPane);
 		tabInformation = new JPanel();
-		tabInformation.setPreferredSize(new Dimension(425, 260));
-		tabbedPane.addTab("Informacion del alumno", null, tabInformation, "Muestra la informacion declarada por el alumno");
+		tabbedPane.addTab("Informacion del alumno", null, tabInformation, null);
 		tabInformation.setLayout(null);
 		
 		//Apartado LU
@@ -116,16 +116,16 @@ public class SimplePresentationScreen extends JFrame {
 		lblNGitHubURL.setBounds(10, 147, 77, 14);
 		tabInformation.add(lblNGitHubURL);
 		
-		//Apartado Tiempo y Dia
-		lblNewLabel = new JLabel("Esta ventana fue generada el "+ LocalDateTime.now().getDayOfMonth() +"/"+ LocalDateTime.now().getMonthValue() +"/"+ LocalDateTime.now().getYear() + " a las: " + LocalDateTime.now().getHour() +":"+ LocalDateTime.now().getMinute() +":"+ LocalDateTime.now().getSecond());
-		lblNewLabel.setBounds(10, 175, 415, 20);
-		tabInformation.add(lblNewLabel);
-		contentPane.add(tabbedPane, BorderLayout.WEST);
-		
 		//Apartado Foto Personal
 		lblFotoPersonal = new JLabel("");
+		lblFotoPersonal.setBounds(479, 5, 95, 236);
 		lblFotoPersonal.setIcon(new ImageIcon(SimplePresentationScreen.class.getResource("/images/MiFoto.jpeg")));
-		contentPane.add(lblFotoPersonal, BorderLayout.EAST);
+		contentPane.add(lblFotoPersonal);
+		
+		//Apartado Tiempo y Dia
+		lblNewLabel = new JLabel("Esta ventana fue generada el "+ LocalDateTime.now().getDayOfMonth() +"/"+ LocalDateTime.now().getMonthValue() +"/"+ LocalDateTime.now().getYear() + " a las: " + LocalDateTime.now().getHour() +":"+ LocalDateTime.now().getMinute() +":"+ LocalDateTime.now().getSecond());
+		lblNewLabel.setBounds(10, 211, 415, 20);
+		contentPane.add(lblNewLabel);
 		
 		
 		
